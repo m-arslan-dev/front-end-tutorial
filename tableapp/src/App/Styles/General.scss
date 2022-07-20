@@ -1,0 +1,22 @@
+$shadow-color: rgba(0, 0, 0, 0.2);
+$shadow: 2px 2px 9px 3px $shadow-color;
+
+@mixin footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    box-shadow: 0 4px 8px 1px $shadow-color;
+}
+
+@mixin header {
+    width: 100%;
+    box-shadow: 0 3px 5px 0 $shadow-color;
+    padding-bottom: 2px;
+}
+
+@mixin content {
+    // display: flex;
+    flex-direction: column;
+    // background-color: aqua;
+    padding : 10px 5px;
+}

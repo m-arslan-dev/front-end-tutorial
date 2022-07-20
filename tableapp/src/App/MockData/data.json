@@ -1,0 +1,19 @@
+{
+    "data": [
+      {
+        "name": "Ali",
+        "age": "21",
+        "rollNo": "1001"
+      },
+      {
+        "name": "Ahmad",
+        "age": "20",
+        "rollNo": "1002"
+      },
+      {
+        "name": "Usman",
+        "age": "22",
+        "rollNo": "1003"
+      }
+    ]
+  }
