@@ -1,0 +1,19 @@
+{
+    "students": [
+      {
+        "name": "Talha",
+        "department": "Information Technology",
+        "rollno": "123"
+      },
+      {
+        "name": "Ahmad",
+        "department": "Computer Engineering",
+        "rollno": "456"
+      },
+      {
+        "name": "Mohammad",
+        "department": "Information Technology",
+        "rollno": "789"
+      }
+    ]
+  }

@@ -24,6 +24,59 @@
   color: white;
 }
 
+table{
+  /* border: 2px solid; */
+}
+
+td {
+  padding: 15px;
+  border: 1px solid;
+}
+
+th {
+  font-size: x-large;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Del-btn {
+  margin-left: 15px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  background-color: white;
+  color: black;
+  border: 2px solid #f44336; /* Red */
+}
+.Del-btn:hover {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.Add-btn {
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50; /* Green */
+}
+.Add-btn:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.margin-div{
+  margin-top: 25px
+}
+
 .App-link {
   color: #61dafb;
 }
