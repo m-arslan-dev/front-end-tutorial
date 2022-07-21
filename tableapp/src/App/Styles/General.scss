@@ -3,36 +3,27 @@ $shadow: 2px 2px 9px 3px $shadow-color;
 
 @mixin footer {
     justify-self: flex-end;
+    align-self: flex-end;
     align-items: center;
     width: 100%;
     min-height: 70px;
-    box-shadow: 0 4px 8px 1px $shadow-color;
+    
+    // box-shadow: 0 4px 8px 1px $shadow-color;
 }
 
 @mixin header {
-    margin: 0;
-    padding: 0;
     justify-self: flex-start;
     width: 100%;
-    // box-shadow: 0 3px 5px 0 $shadow-color;
-    // padding-bottom: 2px;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
 }
 
 @mixin content {
-    // display: flex;
     flex-direction: column;
     // background-color: aqua;
     padding: 10px 5px;
-}
-
-@mixin button {
-    border: none;
-    background-color: rgb(241, 237, 237);
-    border-radius: 5px;
-
-    &:hover {
-        background-color: $shadow-color;
-    }
+    margin-top: 80px;
 }
 
 @mixin table-element($color) {

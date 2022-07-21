@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import "../Styles/_Footer.scss";
 
 function Footer(props) {
   return (
-    <div><h1>Footer</h1></div>
+    <div>Footer</div>
   )
 }
 

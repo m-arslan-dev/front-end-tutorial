@@ -18,10 +18,10 @@ function HomePage(props) {
           <Content />
         </div>
       </contextData.Provider>
+      <div className="footer-container">
       <Footer />
-      {/* <div className="footer-container">
         
-      </div> */}
+      </div>
     </div>
   );
 }
