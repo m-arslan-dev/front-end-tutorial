@@ -1,39 +1,33 @@
 import React from 'react'
-import { useReducer, useRef  } from "react";
-import Students  from "../MockData/data.json";
+import { useRef, useContext, useState } from "react";
 import "../../App.css";
-
-const reducer = (state, action) => {
-  console.log(state)
-  if (action.type === "remove") {
-    return state.filter((_, i) => i != action.i);
-  }
-  if (action.type === "add") {
-    return[
-      ...state,
-      {
-        rollno: action.rollno,
-        name: action.name,
-        department: action.department
-      }
-    ];
-  }
-      return state;
-  }
+import {contextData} from "../Context/ContextApi";
+import { Button, Modal } from 'antd';
 
 function Content() {
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const {state, dispatch } = useContext(contextData);
 
   const rolln = useRef();
   const namee = useRef();
   const dept = useRef();
 
-   const [state, dispatch] = useReducer(reducer, Students.students);
-
-  //  const [inputs, setInputs] = useState({});
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    //alert(namee.current.value);
     if (rolln.current.value != '' && namee.current.value != '' && dept.current.value != ''){
     dispatch({
       type: 'add',
@@ -89,7 +83,17 @@ function Content() {
   ADD
 </button>
 </div>
+<div>
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
     </div>
+  </div>
   );
 }
 
