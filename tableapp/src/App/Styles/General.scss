@@ -2,21 +2,42 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 $shadow: 2px 2px 9px 3px $shadow-color;
 
 @mixin footer {
-    position: absolute;
-    bottom: 0px;
+    justify-self: flex-end;
+    align-items: center;
     width: 100%;
+    min-height: 70px;
     box-shadow: 0 4px 8px 1px $shadow-color;
 }
 
 @mixin header {
+    margin: 0;
+    padding: 0;
+    justify-self: flex-start;
     width: 100%;
-    box-shadow: 0 3px 5px 0 $shadow-color;
-    padding-bottom: 2px;
+    // box-shadow: 0 3px 5px 0 $shadow-color;
+    // padding-bottom: 2px;
 }
 
 @mixin content {
     // display: flex;
     flex-direction: column;
     // background-color: aqua;
-    padding : 10px 5px;
+    padding: 10px 5px;
+}
+
+@mixin button {
+    border: none;
+    background-color: rgb(241, 237, 237);
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $shadow-color;
+    }
+}
+
+@mixin table-element($color) {
+    min-height: 100vh;
+    padding: 5px;
+    border-top: 1px solid rgba(0,0,0,0.3);
+    text-align: center;
 }

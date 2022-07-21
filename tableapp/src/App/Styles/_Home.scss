@@ -3,10 +3,12 @@
 .footer-container {
     @include footer
 }
-.header-container {
-    @include header
-}
 
 .content-container {
     @include content
+}
+
+.home-page{
+    min-height: 100%;
+    // background-color: blue;
 }
