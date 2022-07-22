@@ -22,16 +22,15 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "prettier",
-    "plugin:prettier/recommended",
-    "plugin:css/recommended"
+    "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "jsx-a11y", "prettier", "css"],
+  "plugins": ["react", "jsx-a11y", "prettier"],
   "rules": {
     "semi": 0,
     "react/jsx-indent": ["error", 2],
     "max-len": [2, 120, 2],
     "no-console": "warn",
-    "comma-dangle": ["error", "never"],
+    // "comma-dangle": ["error", "never"],
     "react/prop-types": [2, { "ignore": ["history"] }],
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],

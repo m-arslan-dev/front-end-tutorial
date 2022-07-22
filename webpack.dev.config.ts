@@ -35,12 +35,8 @@ const config: Configuration = {
       },
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: ['style-loader', 'css-loader', 'sass-loader'],
-      // },
     ],
   },
   plugins: [
@@ -54,9 +50,9 @@ const config: Configuration = {
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
-    // new StylelintPlugin({
-    //   extensions: ['css', 'scss'],
-    // }),
+    new StylelintPlugin({
+      extensions: ['css', 'scss'],
+    }),
   ],
   devtool: 'inline-source-map',
   devServer: {

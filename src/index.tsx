@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/test.css';
+import './styles/test.scss';
 
 const unused = 'something';
 

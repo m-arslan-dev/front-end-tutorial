@@ -26,9 +26,10 @@ const config: Configuration = {
           },
         },
       },
-      new ESLintPlugin({
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
-      }),
+      {
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   resolve: {
@@ -44,9 +45,9 @@ const config: Configuration = {
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
-    // new StylelintPlugin({
-    //   extensions: ['css', 'scss'],
-    // }),
+    new StylelintPlugin({
+      extensions: ['css', 'scss'],
+    }),
     new CleanWebpackPlugin(),
   ],
 };
