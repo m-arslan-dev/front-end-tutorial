@@ -22,9 +22,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:css/recommended"
   ],
-  "plugins": ["react", "jsx-a11y", "prettier"],
+  "plugins": ["react", "jsx-a11y", "prettier", "css"],
   "rules": {
     "semi": 0,
     "react/jsx-indent": ["error", 2],
@@ -33,9 +34,7 @@
     "comma-dangle": ["error", "never"],
     "react/prop-types": [2, { "ignore": ["history"] }],
     "jsx-a11y/label-has-associated-control": "off",
-    "react/jsx-filename-extension": [1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/no-set-state": "off",
     "prettier/prettier": ["error"],
     "react/jsx-props-no-spreading": "off",

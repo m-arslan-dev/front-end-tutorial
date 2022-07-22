@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './styles/test.css';
 
 const unused = 'something';
 
 const App = () => (
-  <h1>
+  <h1 className="box">
     My React {unused} and TypeScript App!! {new Date().toLocaleDateString()}
   </h1>
 );
