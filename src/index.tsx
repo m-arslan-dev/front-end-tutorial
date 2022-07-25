@@ -1,15 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/test.scss';
+import './Styles/general.scss';
 import './index.css';
 
-const unused = 'something';
-
-const App = () => (
-  <h1 className="box">
-    My React {unused} and TypeScript App!! {new Date().toLocaleDateString()}
-  </h1>
-);
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
