@@ -1,5 +1,4 @@
 import { createContext } from 'react';
+import { MapContextInterface } from '../Assets/Interfaces';
 
-export const contextData = createContext({
-  trees: {},
-});
+export const MapContext = createContext({} as MapContextInterface);

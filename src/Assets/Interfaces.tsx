@@ -7,20 +7,30 @@ export interface Location {
 }
 
 export interface Tree {
-  id: number;
+  id?: number;
   type: string;
   name: string;
-  note: string;
+  note?: string;
   location: Location;
+}
+
+interface PlantTreeActionPayload {
+  trees?: Array<Tree>;
+  tree?: Tree;
 }
 
 export interface PlantTreeAction {
   type: plantTreeActionKind;
-  payload: Tree;
+  payload: PlantTreeActionPayload;
 }
 
-export interface Display {
+export interface PlantTreeProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  location: Location;
+}
+
+export interface MapContextInterface {
+  trees: Array<Tree>;
   setTrees: Dispatch<PlantTreeAction>;
 }

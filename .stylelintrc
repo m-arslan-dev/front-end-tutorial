@@ -1,9 +1,9 @@
 {
-  "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
-  "defaultSeverity": "warning",
-  "extends": ["stylelint-config-prettier-scss", "stylelint-config-standard", "stylelint-config-standard-scss"],
-  "rules": {
-    "declaration-colon-newline-after": "always-multi-line",
-    "no-missing-end-of-source-newline": true
-  }
+    "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
+    "defaultSeverity": "warning",
+    "extends": ["stylelint-config-prettier","stylelint-config-standard", "stylelint-config-standard-scss"],
+    "rules": {
+        "declaration-colon-newline-after": "always-multi-line",
+        "no-missing-end-of-source-newline": true
+    }
 }
