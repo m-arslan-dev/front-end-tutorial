@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 import { plantTreeActionKind } from './Variables';
 
@@ -24,13 +25,23 @@ export interface PlantTreeAction {
   payload: PlantTreeActionPayload;
 }
 
-export interface PlantTreeProps {
+export interface TreeComponentProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  location: Location;
+  location?: Location;
+  tree?: Tree;
+  selectedTree?: Tree | null;
 }
 
 export interface MapContextInterface {
   trees: Array<Tree>;
   setTrees: Dispatch<PlantTreeAction>;
+  theme?: Theme | null;
+  setTheme?: Dispatch<SetStateAction<Theme | null>>;
+}
+
+export interface MapComponentProps<T, R, S> {
+  setMap: Dispatch<SetStateAction<T | null>>;
+  setLocation?: Dispatch<SetStateAction<R>>;
+  setOpen?: Dispatch<SetStateAction<S>>;
 }

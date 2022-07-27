@@ -1,32 +1,33 @@
-import React, { useRef, useContext } from 'react';
-import { Button, Box, Modal, Typography, TextField, Tooltip } from '@mui/material';
-import { PlantTreeProps } from '../Assets/Interfaces';
+import React, { useRef, useContext, useState } from 'react';
+import {
+  Button,
+  Box,
+  Modal,
+  Typography,
+  TextField,
+  Tooltip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  InputAdornment,
+} from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { TreeComponentProps } from '../Assets/Interfaces';
 import '../Styles/_planttree.scss';
-import { plantTreeActionKind } from '../Assets/Variables';
 import { MapContext } from '../ContextApi/ContextApi';
+import { plantTree } from '../Scripts/MapConfigurations';
+import { AccountCircle } from '@mui/icons-material';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 
-function Planttree(props: PlantTreeProps) {
+function PlantTree(props: TreeComponentProps) {
   const { setTrees } = useContext(MapContext);
 
+  const [type, setType] = useState('Pine');
   const nameRef = useRef<HTMLInputElement>();
-  const typeRef = useRef<HTMLInputElement>();
   const noteRef = useRef<HTMLInputElement>();
 
-  const plantTree = () => {
-    if (nameRef.current && typeRef.current && noteRef.current) {
-      setTrees({
-        type: plantTreeActionKind.PLANT,
-        payload: {
-          tree: {
-            type: typeRef.current.value,
-            name: nameRef.current.value,
-            note: noteRef.current.value,
-            location: props.location,
-          },
-        },
-      });
-    }
-    props.setOpen(false);
+  const handleChange = (event: SelectChangeEvent) => {
+    setType(event.target.value as string);
   };
 
   return (
@@ -38,10 +39,11 @@ function Planttree(props: PlantTreeProps) {
       <Box
         className="modal-content"
         component="form"
+        autoComplete="off"
         onSubmit={() => {
-          plantTree();
+          plantTree(nameRef, type, noteRef, props.location, props.setOpen, setTrees);
         }}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
           Plant A Tree
         </Typography>
         <TextField
@@ -51,21 +53,50 @@ function Planttree(props: PlantTreeProps) {
           label="Name"
           variant="standard"
           className="modal-content-input"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
         />
         <br />
+        <br />
+        <FormControl fullWidth margin="dense" required>
+          <InputLabel id="demo-simple-select-label">Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={type}
+            label="Type"
+            onChange={handleChange}>
+            <MenuItem value={'Pine'}>Pine</MenuItem>
+            <MenuItem value={'Bonsai'}>Bonsai</MenuItem>
+            <MenuItem value={'Neem'}>Neem</MenuItem>
+          </Select>
+        </FormControl>
+
         <TextField
-          required
-          inputRef={typeRef}
+          inputRef={noteRef}
           margin="dense"
-          label="Type"
+          label="Note"
           variant="standard"
+          multiline
           className="modal-content-input"
+          sx={{ width: '100%' }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EventNoteIcon />
+              </InputAdornment>
+            ),
+          }}
         />
         <br />
-        <TextField inputRef={noteRef} margin="dense" label="Note" variant="standard" className="modal-content-input" />
         <br />
         <Tooltip title="Plant A Tree" placement="bottom-end" arrow>
-          <Button className="button" color="primary" variant="contained" type="submit">
+          <Button className="button" color="primary" variant="contained" type="submit" sx={{ align: 'center' }}>
             Plant Tree
           </Button>
         </Tooltip>
@@ -74,4 +105,4 @@ function Planttree(props: PlantTreeProps) {
   );
 }
 
-export default Planttree;
+export default PlantTree;

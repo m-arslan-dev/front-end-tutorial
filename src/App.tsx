@@ -1,11 +1,14 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Maps from './Pages/Maps';
 import InitData from './MockData/InitData.json';
 import { plantTree } from './Reducers/Trees';
 import { MapContext } from './ContextApi/ContextApi';
-import { plantTreeActionKind } from './Assets/Variables';
+import { plantTreeActionKind, lightTheme } from './Assets/Variables';
+import { ThemeProvider, Theme } from '@mui/material';
+
 function App() {
   const [trees, setTrees] = useReducer(plantTree, InitData.Trees);
+  const [theme, setTheme] = useState<Theme | null>(lightTheme);
 
   useEffect(() => {
     const treesData = JSON.parse(window.localStorage.getItem('trees') as string);
@@ -23,9 +26,11 @@ function App() {
 
   return (
     <div>
-      <MapContext.Provider value={{ trees, setTrees }}>
-        <Maps />
-      </MapContext.Provider>
+      <ThemeProvider theme={theme ? theme : lightTheme}>
+        <MapContext.Provider value={{ trees, setTrees, theme, setTheme }}>
+          <Maps />
+        </MapContext.Provider>
+      </ThemeProvider>
     </div>
   );
 }
