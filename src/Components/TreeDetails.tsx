@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Modal, TextField, InputAdornment, Typography } from '@mui/material';
+import { TextField, InputAdornment, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import { TreeComponentProps } from '../Assets/Interfaces';
@@ -8,16 +8,11 @@ import '../Styles/_planttree.scss';
 
 function TreeDetails(props: TreeComponentProps) {
   return (
-    <Modal
-      open={props.open}
-      onClose={() => props.setOpen(false)}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description">
-      <Box className="modal-content">
-        <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
-          Tree Details
-        </Typography>
-
+    <Dialog open={props.open} onClose={() => props.setOpen(false)} aria-labelledby="responsive-dialog-title">
+      <DialogTitle id="responsive-dialog-title" align="center">
+        {'Tree Details'}
+      </DialogTitle>
+      <DialogContent>
         <TextField
           id="outlined-read-only-input"
           label="Name"
@@ -70,8 +65,8 @@ function TreeDetails(props: TreeComponentProps) {
           }}
         />
         <br />
-      </Box>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   );
 }
 

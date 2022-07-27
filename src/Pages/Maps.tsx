@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { lightTheme, MAP_CENTER } from '../Assets/Variables';
-import { Fab } from '@mui/material';
+import { darkTheme, lightTheme, MAP_CENTER } from '../Assets/Variables';
+import { Fab, Switch } from '@mui/material';
 import PlantTree from '../Components/PlantTree';
 import { Location } from '../Assets/Interfaces';
 import NavigationIcon from '@mui/icons-material/Navigation';
@@ -10,11 +10,17 @@ import { ThemeProvider } from '@mui/material';
 import { MapContext } from '../ContextApi/ContextApi';
 
 function Maps() {
-  const { theme } = useContext(MapContext);
+  const { theme, setTheme } = useContext(MapContext);
   const isLoaded = loadMap();
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [location, setLocation] = useState<Location>(MAP_CENTER);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+    if (setTheme) theme === lightTheme ? setTheme(darkTheme) : setTheme(lightTheme);
+  };
 
   return isLoaded ? (
     <div>
@@ -22,6 +28,8 @@ function Maps() {
         <Map setMap={setMap} setLocation={setLocation} setOpen={setOpen} />
         <PlantTree open={open} setOpen={setOpen} location={location} />
       </ThemeProvider>
+
+      <Switch checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
 
       <Fab
         variant="extended"
