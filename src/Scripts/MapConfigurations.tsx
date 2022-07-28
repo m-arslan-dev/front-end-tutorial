@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, MutableRefObject } from 'react';
 import { REACT_APP_GOOGLE_MAPS_API_KEY } from '../Assets/Variables';
 import { useJsApiLoader, Marker } from '@react-google-maps/api';
-import { plantTreeActionKind } from '../Assets/Variables';
+import { plantTreeActionKind, treeCarbonemmission, treeTypes } from '../Assets/Variables';
 import { Tree, PlantTreeAction, Location } from '../Assets/Interfaces';
 
 const onLoad = (setMap: Dispatch<SetStateAction<google.maps.Map | null>>) => {
@@ -51,10 +51,13 @@ const plantTree = (
   note?: MutableRefObject<HTMLInputElement | undefined>,
   location?: Location,
   setOpen?: Dispatch<SetStateAction<boolean>>,
-  setTrees?: Dispatch<PlantTreeAction>
+  setTrees?: Dispatch<PlantTreeAction>,
+  totalEmmissions?: number,
+  setTotalEmmissions?: Dispatch<SetStateAction<number>>
 ) => {
   if (name && note && location && type) {
-    if (name.current && note.current && setTrees)
+    if (name.current && note.current && setTrees && setTotalEmmissions && totalEmmissions) {
+      setTotalEmmissions(totalEmmissions + treeCarbonemmission[type as treeTypes]);
       setTrees({
         type: plantTreeActionKind.PLANT,
         payload: {
@@ -63,9 +66,11 @@ const plantTree = (
             name: name.current.value,
             note: note.current.value,
             location: location,
+            carbonEmissions: treeCarbonemmission[type as treeTypes],
           },
         },
       });
+    }
   }
   if (setOpen) setOpen(false);
 };

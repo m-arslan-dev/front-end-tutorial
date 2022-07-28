@@ -12,6 +12,7 @@ export interface Tree {
   type: string;
   name: string;
   note?: string;
+  carbonEmissions?: number;
   location: Location;
 }
 
@@ -38,6 +39,8 @@ export interface MapContextInterface {
   setTrees: Dispatch<PlantTreeAction>;
   theme?: Theme | null;
   setTheme?: Dispatch<SetStateAction<Theme | null>>;
+  totalEmmissions: number;
+  setTotalEmmissions: Dispatch<SetStateAction<number>>;
 }
 
 export interface MapComponentProps<T, R, S> {

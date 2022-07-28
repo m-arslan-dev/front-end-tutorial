@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GoogleMap } from '@react-google-maps/api';
-import { MAP_CENTER } from '../Assets/Variables';
+import { MAP_CENTER, assasinMapStyle } from '../Assets/Variables';
 import { Box } from '@mui/material';
 import { Location, MapComponentProps, Tree } from '../Assets/Interfaces';
 import { MapContext } from '../ContextApi/ContextApi';
@@ -35,7 +35,7 @@ function Map(props: MapComponentProps<google.maps.Map, Location, boolean>) {
           onClick={(e) => {
             addTree({ lat: e.latLng?.lat(), lng: e.latLng?.lng() });
           }}
-          options={{ fullscreenControl: false }}>
+          options={{ fullscreenControl: false, zoomControl: false, styles: assasinMapStyle }}>
           {mapMarkers}
         </GoogleMap>
       </Box>

@@ -20,6 +20,7 @@ function TreeDetails(props: TreeComponentProps) {
           variant="standard"
           className="modal-content-input"
           defaultValue={props.selectedTree?.name}
+          sx={{ width: '100%' }}
           InputProps={{
             readOnly: true,
             startAdornment: (
@@ -37,6 +38,7 @@ function TreeDetails(props: TreeComponentProps) {
           variant="standard"
           className="modal-content-input"
           defaultValue={props.selectedTree?.type}
+          sx={{ width: '100%' }}
           InputProps={{
             readOnly: true,
             startAdornment: (
@@ -54,7 +56,27 @@ function TreeDetails(props: TreeComponentProps) {
           margin="dense"
           variant="standard"
           className="modal-content-input"
+          sx={{ width: '100%' }}
           defaultValue={props.selectedTree?.note}
+          InputProps={{
+            readOnly: true,
+            startAdornment: (
+              <InputAdornment position="start">
+                <EventNoteIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <br />
+        <TextField
+          id="outlined-read-only-input"
+          label="Carbon Emissions"
+          multiline
+          margin="dense"
+          variant="standard"
+          sx={{ width: '100%' }}
+          className="modal-content-input"
+          defaultValue={props.selectedTree?.carbonEmissions}
           InputProps={{
             readOnly: true,
             startAdornment: (

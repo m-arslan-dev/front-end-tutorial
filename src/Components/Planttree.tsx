@@ -20,21 +20,23 @@ import { MapContext } from '../ContextApi/ContextApi';
 import { plantTree } from '../Scripts/MapConfigurations';
 import { AccountCircle } from '@mui/icons-material';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import { treeTypes } from '../Assets/Variables';
 
 function PlantTree(props: TreeComponentProps) {
-  const { setTrees } = useContext(MapContext);
+  const { setTrees, totalEmmissions, setTotalEmmissions } = useContext(MapContext);
 
-  const [type, setType] = useState('Pine');
+  const [type, setType] = useState(treeTypes.Pine);
   const nameRef = useRef<HTMLInputElement>();
   const noteRef = useRef<HTMLInputElement>();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setType(event.target.value as string);
+    setType(event.target.value as treeTypes);
   };
 
   return (
     <form
-      onSubmit={() => {
+      onSubmit={(e) => {
+        e.preventDefault();
         plantTree(nameRef, type, noteRef, props.location, props.setOpen, setTrees);
       }}>
       <Dialog open={props.open} onClose={() => props.setOpen(false)} aria-labelledby="responsive-dialog-title">
@@ -46,7 +48,16 @@ function PlantTree(props: TreeComponentProps) {
             component="form"
             autoComplete="off"
             onSubmit={() => {
-              plantTree(nameRef, type, noteRef, props.location, props.setOpen, setTrees);
+              plantTree(
+                nameRef,
+                type,
+                noteRef,
+                props.location,
+                props.setOpen,
+                setTrees,
+                totalEmmissions,
+                setTotalEmmissions
+              );
             }}>
             <TextField
               required
@@ -55,6 +66,7 @@ function PlantTree(props: TreeComponentProps) {
               label="Name"
               variant="standard"
               className="modal-content-input"
+              sx={{ width: '100%' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -73,9 +85,9 @@ function PlantTree(props: TreeComponentProps) {
                 value={type}
                 label="Type"
                 onChange={handleChange}>
-                <MenuItem value={'Pine'}>Pine</MenuItem>
-                <MenuItem value={'Bonsai'}>Bonsai</MenuItem>
-                <MenuItem value={'Neem'}>Neem</MenuItem>
+                <MenuItem value={treeTypes.Pine}>Pine</MenuItem>
+                <MenuItem value={treeTypes.Bonsai}>Bonsai</MenuItem>
+                <MenuItem value={treeTypes.Neem}>Neem</MenuItem>
               </Select>
             </FormControl>
 

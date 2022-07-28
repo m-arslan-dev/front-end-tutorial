@@ -12,6 +12,7 @@ const plantTree = (trees: Array<Tree>, action: PlantTreeAction) => {
           type: tree.type,
           note: tree.note,
           location: tree.location,
+          carbonEmissions: tree.carbonEmissions,
         });
       } else return trees;
     }
