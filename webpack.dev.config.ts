@@ -17,7 +17,7 @@ const config: Configuration = {
   output: {
     publicPath: '/',
   },
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   module: {
     rules: [
       {
@@ -34,7 +34,7 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
