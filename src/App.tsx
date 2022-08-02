@@ -3,7 +3,8 @@ import Maps from './Pages/Maps';
 import InitData from './MockData/InitData.json';
 import { plantTree } from './Reducers/Trees';
 import { MapContext } from './ContextApi/ContextApi';
-import { plantTreeActionKind, lightTheme } from './Assets/Variables';
+import { lightTheme } from './Assets/Variables';
+import { plantTreeActionKind } from './Assets/Enums';
 import { ThemeProvider, Theme, CssBaseline } from '@mui/material';
 
 function App() {

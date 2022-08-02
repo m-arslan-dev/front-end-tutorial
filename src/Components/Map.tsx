@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { Location, MapComponentProps, Tree } from '../Assets/Interfaces';
 import { MapContext } from '../ContextApi/ContextApi';
 import { onUnmount, onLoad, makeTreeMarkers } from '../Scripts/MapConfigurations';
-import TreeDetails from '../Components/TreeDetails';
+import TreeDetails from './TreeDetails/TreeDetails';
 
 function Map(props: MapComponentProps<google.maps.Map, Location, boolean>) {
   const { trees } = useContext(MapContext);

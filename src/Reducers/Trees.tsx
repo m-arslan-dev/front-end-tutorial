@@ -1,5 +1,5 @@
 import { Tree, PlantTreeAction } from '../Assets/Interfaces';
-import { plantTreeActionKind } from '../Assets/Variables';
+import { plantTreeActionKind } from '../Assets/Enums';
 
 const plantTree = (trees: Array<Tree>, action: PlantTreeAction) => {
   switch (action.type) {

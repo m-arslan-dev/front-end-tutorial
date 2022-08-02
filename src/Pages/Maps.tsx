@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { darkTheme, lightTheme, MAP_CENTER, Item } from '../Assets/Variables';
 import { Fab, Switch, Button } from '@mui/material';
-import PlantTree from '../Components/PlantTree';
+import PlantTree from '../Components/PlantTree/PlantTree';
 import TreesList from '../Components/TreesList';
 import { Location } from '../Assets/Interfaces';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import Map from '../Components/Map';
 import { loadMap } from '../Scripts/MapConfigurations';
 import { MapContext } from '../ContextApi/ContextApi';
+import { emmisionStyle, centerButtonStyle } from '../Assets/StyleVariables';
 
 function Maps() {
   const { theme, setTheme, totalEmmissions, trees } = useContext(MapContext);
@@ -33,14 +34,8 @@ function Maps() {
       <PlantTree open={open} setOpen={setOpen} location={location} />
       <TreesList open={openTreesList} setOpen={setOpenTrees} />
 
-      <Button
-        sx={{
-          position: 'absolute',
-          right: 20,
-          bottom: '4vh',
-        }}
-        onClick={totalEmmissionsClicked}>
-        <Item key={4} elevation={10} sx={{ paddingX: 1 }}>
+      <Button sx={emmisionStyle} onClick={totalEmmissionsClicked}>
+        <Item elevation={10}>
           {`Emmissions=${totalEmmissions} `}
           {`Count=${trees.length}`}
         </Item>
@@ -52,11 +47,12 @@ function Maps() {
         variant="extended"
         size="medium"
         color="primary"
-        sx={{ position: 'absolute', right: 20, top: '4vh' }}
+        className="center-button"
+        sx={centerButtonStyle}
         onClick={() => {
           map?.panTo(MAP_CENTER);
         }}>
-        <NavigationIcon sx={{ mr: 1 }} />
+        <NavigationIcon />
         Center
       </Fab>
     </div>

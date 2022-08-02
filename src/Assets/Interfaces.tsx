@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
-import { plantTreeActionKind } from './Variables';
+import { plantTreeActionKind } from './Enums';
 
 export interface Location {
   lat: number | undefined;
@@ -47,4 +47,14 @@ export interface MapComponentProps<T, R, S> {
   setMap: Dispatch<SetStateAction<T | null>>;
   setLocation?: Dispatch<SetStateAction<R>>;
   setOpen?: Dispatch<SetStateAction<S>>;
+}
+
+export interface InputFieldProps {
+  label: string;
+  required: boolean;
+}
+
+export interface DisplayFieldProps {
+  label: string;
+  name: string;
 }

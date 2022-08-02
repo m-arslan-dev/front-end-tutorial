@@ -31,7 +31,7 @@
     "max-len": [2, 120, 2],
     "no-console": "warn",
     // "comma-dangle": ["error", "never"],
-    "react/prop-types": [2, { "ignore": ["history"] }],
+    "react/prop-types": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/no-set-state": "off",

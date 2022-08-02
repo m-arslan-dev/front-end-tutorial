@@ -1,0 +1,18 @@
+@import "./general";
+
+.container {
+  display: block;
+}
+
+.center-button {
+  position: "absolute";
+  right: 20;
+  top: 4vh;
+  width: 5vw;
+}
+
+.emmision-button {
+  position: absolute;
+  left: 20;
+  top: 90vh;
+}

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, MutableRefObject } from 'react';
 import { REACT_APP_GOOGLE_MAPS_API_KEY } from '../Assets/Variables';
 import { useJsApiLoader, Marker } from '@react-google-maps/api';
-import { plantTreeActionKind, treeCarbonemmission, treeTypes } from '../Assets/Variables';
+import { plantTreeActionKind, treeCarbonemmission, treeTypes } from '../Assets/Enums';
 import { Tree, PlantTreeAction, Location } from '../Assets/Interfaces';
 
 const onLoad = (setMap: Dispatch<SetStateAction<google.maps.Map | null>>) => {
