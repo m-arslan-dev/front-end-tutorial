@@ -11,7 +11,8 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
-      "jsx": "react"
+      "jsx": "react",
+      "strictNullChecks": false
     },
-    "include": ["src"]
+    "include": ["src", "custom.d.ts"]
   }

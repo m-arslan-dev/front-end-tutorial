@@ -1,28 +1,29 @@
-import { Dispatch } from "react";
+import { Dispatch } from 'react';
 
 export enum treeType {
   whiteOak = 'White Oak',
   redMaple = 'Red Maple',
-  hemlock = 'Hemlock'
+  hemlock = 'Hemlock',
 }
 
 export interface dataType {
-    tree: string;
-    name: string;
-    note?: string;
-    position:{lat: number, lng: number}
-  }
+  tree: string | undefined;
+  name: string | undefined;
+  note?: string | undefined;
+  position: { lat: number; lng: number };
+}
 
 export interface contextType {
-  data: Array<dataType>,
-  setData: Dispatch<actionContext>
+  data: Array<dataType>;
+  setData: Dispatch<actionContext>;
 }
 
 export enum actionKind {
-  add = 'add'
+  add = 'add',
+  init = 'init',
 }
 
 export interface actionContext {
   type: actionKind;
-  payload: dataType;
+  payload: { data?: dataType; trees?: Array<dataType> };
 }

@@ -17,11 +17,11 @@ const config: Configuration = {
   output: {
     publicPath: '/',
   },
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
-        test: /\.(ts|js)x?$/i,
+        test: /\.(tsx|js)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -31,6 +31,17 @@ const config: Configuration = {
         },
       },
       { test: /\.s?css$/, use: ['style-loader', 'css-loader',  "sass-loader"] },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {

@@ -1,12 +1,12 @@
 [
     {
-      "tree": "White Oak",
-      "name": "Chicago, Illinois",
+      "tree": "Hemlock",
+      "name": "Ali",
       "position": { "lat": 41.881832, "lng": -87.623177 }
     },
     {
       "tree": "White Oak",
-      "name": "Denver, Colorado",
+      "name": "Ahmad",
       "position": { "lat": 39.739235, "lng": -104.99025 }
     }
 ]

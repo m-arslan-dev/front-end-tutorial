@@ -7,7 +7,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const config: Configuration = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[contenthash].js',
@@ -16,7 +16,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)x?$/i,
+        test: /\.(tsx|js)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -26,6 +26,17 @@ const config: Configuration = {
         },
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
