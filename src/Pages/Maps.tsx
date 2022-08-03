@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { darkTheme, lightTheme, MAP_CENTER, Item } from '../Assets/Variables';
 import { Fab, Switch, Button } from '@mui/material';
 import PlantTree from '../Components/PlantTree/PlantTree';
@@ -9,15 +9,33 @@ import Map from '../Components/Map';
 import { loadMap } from '../Scripts/MapConfigurations';
 import { MapContext } from '../ContextApi/ContextApi';
 import { emmisionStyle, centerButtonStyle } from '../Assets/StyleVariables';
+import { plantTreeActionKind } from '../Assets/Enums';
 
 function Maps() {
-  const { theme, setTheme, totalEmmissions, trees } = useContext(MapContext);
+  const { theme, setTheme, totalEmmissions, trees, setTrees, setTotalEmmissions } = useContext(MapContext);
   const isLoaded = loadMap();
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [openTreesList, setOpenTrees] = useState<boolean>(false);
   const [location, setLocation] = useState<Location>(MAP_CENTER);
   const [checked, setChecked] = useState<boolean>(false);
+
+  useEffect(() => {
+    const treesData = JSON.parse(window.localStorage.getItem('trees') as string);
+    setTrees({
+      type: plantTreeActionKind.INITIALIZE,
+      payload: {
+        trees: treesData,
+      },
+    });
+    const totalEmmissions = JSON.parse(window.localStorage.getItem('totalEmmissions') as string);
+    setTotalEmmissions(totalEmmissions);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('trees', JSON.stringify(trees));
+    window.localStorage.setItem('totalEmmissions', JSON.stringify(totalEmmissions));
+  }, [trees]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
