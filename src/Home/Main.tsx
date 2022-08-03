@@ -2,24 +2,8 @@ import React, { useReducer, useEffect } from 'react';
 import MapSection from '../Components/MapSection';
 import { contextData } from '../ContextAPI/Context';
 import data from '../Data/Marked.json';
-import { dataType, actionContext, actionKind } from '../Interfaces/Interface';
-
-const reducer = (state: Array<dataType>, action: actionContext) => {
-  if (action.type === actionKind.add)
-    return [
-      ...state,
-      {
-        tree: action.payload.data.tree,
-        name: action.payload.data.name,
-        position: action.payload.data.position,
-        note: action.payload.data.note,
-      },
-    ];
-  else if (action.type === actionKind.init) {
-    return action.payload.trees;
-  }
-  return state;
-};
+import { actionKind } from '../Interfaces/Interface';
+import { reducer } from '../ContextAPI/Reducer';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, data);

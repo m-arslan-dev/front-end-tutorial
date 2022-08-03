@@ -3,9 +3,11 @@ import { GoogleMap, useJsApiLoader, InfoWindow, Marker } from '@react-google-map
 import { key } from '../Keys/APIkey';
 import 'antd/dist/antd.css';
 import { contextData } from '../ContextAPI/Context';
-import { actionKind } from '../Interfaces/Interface';
-import { dataType } from '../Interfaces/Interface';
-import { Button, Modal } from 'antd';
+import { Button } from 'antd';
+import PlantTreeModal from '../Components/PlantTreeModal';
+import Modal_List from './Modal_List';
+import { emissionReduced } from '../Utility Functions/Emissions';
+import { getCurrentLocation } from '../Utility Functions/currLoc';
 
 function MapSection() {
   const { data, setData } = useContext(contextData);
@@ -22,6 +24,23 @@ function MapSection() {
   const namee = useRef<HTMLInputElement>(null);
   const notee = useRef<HTMLInputElement>(null);
 
+  const props = {
+    VisibleFunc: setIsModalVisible,
+    Visible: isModalVisible,
+    VisibleList: isModalVisible_list,
+    VisibleListFunc: setIsModalVisible_list,
+    lt: latt,
+    lg: lngg,
+    D: data,
+    setD: setData,
+    setEm: setEmissions,
+    TREE: treee,
+    NAME: namee,
+    NOTE: notee,
+    ZoomFunc: setCurrZoom,
+    PosFunc: setCurrPos,
+  };
+
   useEffect(() => {
     const emission = JSON.parse(window.localStorage.getItem('emissions') as string);
     if (emission) setEmissions(emission);
@@ -30,18 +49,6 @@ function MapSection() {
   useEffect(() => {
     window.localStorage.setItem('emissions', JSON.stringify(emissions));
   }, [emissions]);
-
-  const containerStyle = {
-    width: '100vw',
-    height: '100vh',
-  };
-
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setCurrPos({ lat: position.coords.latitude, lng: position.coords.longitude });
-      setCurrZoom(20);
-    });
-  };
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -64,38 +71,11 @@ function MapSection() {
     map.fitBounds(bounds);
   };
 
-  const handleSubmit = () => {
-    if (treee.current.value != '' && namee.current.value != '') {
-      const pload: dataType = {
-        tree: treee.current.value,
-        name: namee.current.value,
-        position: { lat: latt, lng: lngg },
-        note: notee.current.value,
-      };
-      setData({ type: actionKind.add, payload: { data: pload } });
-      setIsModalVisible(false);
-      if (treee.current.value === 'White Oak') setEmissions((prevState) => prevState + 5);
-      else if (treee.current.value === 'Red Maple') setEmissions((prevState) => prevState + 10);
-      else if (treee.current.value === 'Hemlock') setEmissions((prevState) => prevState + 15);
-      treee.current.value = '';
-      namee.current.value = '';
-      notee.current.value = '';
-    } else {
-      setIsModalVisible(true);
-    }
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (event: any) => {
     setIsModalVisible(true);
     setLatt(event.latLng.lat());
     setLngg(event.latLng.lng());
-  };
-
-  const emissionReduced = (treeetype: string) => {
-    if (treeetype === 'White Oak') return 5;
-    if (treeetype === 'Red Maple') return 10;
-    if (treeetype === 'Hemlock') return 15;
   };
 
   const onUnmount = React.useCallback(function callback() {
@@ -104,7 +84,7 @@ function MapSection() {
 
   return isLoaded ? (
     <GoogleMap
-      mapContainerStyle={containerStyle}
+      mapContainerStyle={{ width: '100vw', height: '100vh' }}
       center={currPos}
       zoom={currZoom}
       onLoad={handleOnLoad}
@@ -146,75 +126,8 @@ function MapSection() {
           ) : null}
         </Marker>
       ))}
-      <Modal
-        title="Plant a Tree"
-        visible={isModalVisible}
-        onOk={handleSubmit}
-        onCancel={() => {
-          setIsModalVisible(false);
-        }}
-        footer={[
-          <Button
-            key="back"
-            onClick={() => {
-              setIsModalVisible(false);
-            }}>
-            Cancel
-          </Button>,
-          <Button key="link" type="primary" onClick={handleSubmit}>
-            Plant a Tree
-          </Button>,
-        ]}>
-        <div className="grid-container">
-          <div className="grid-item">
-            <label className="label-margin">Select Tree Type*</label>
-          </div>
-          <div className="grid-item">
-            <select name="tree" id="tree" ref={treee}>
-              <option value="White Oak">White Oak</option>
-              <option value="Red Maple">Red Maple</option>
-              <option value="Hemlock">Hemlock</option>
-            </select>
-          </div>
-
-          <br />
-          <div className="grid-container">
-            <div className="grid-item">
-              <label className="label-margin">Name*</label>
-            </div>
-            <div className="grid-item">
-              <input ref={namee} id="name" type="text" />
-            </div>
-          </div>
-          <br />
-          <div className="grid-container">
-            <div className="grid-item">
-              <label className="label-margin">Note</label>
-            </div>
-            <div className="grid-item">
-              <input ref={notee} id="note" type="text" />
-            </div>
-          </div>
-        </div>
-      </Modal>
-      <Modal
-        title="Total Trees Planted"
-        visible={isModalVisible_list}
-        onOk={() => {
-          setIsModalVisible_list(false);
-        }}
-        onCancel={() => {
-          setIsModalVisible_list(false);
-        }}>
-        {data.map(({ tree, name }, i) => (
-          <div key={i}>
-            <li>
-              Name: {name}, &nbsp; Type of Tree: {tree}, &nbsp; Emissions reduced: {emissionReduced(tree)}
-            </li>
-          </div>
-        ))}
-      </Modal>
-      ;
+      {PlantTreeModal(props)}
+      {Modal_List(props)};
     </GoogleMap>
   ) : (
     <></>
