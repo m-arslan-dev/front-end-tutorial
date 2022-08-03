@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
-import { plantTreeActionKind } from './Enums';
+import { plantTreeActionKind, treeTypes } from './Enums';
 
 export interface Location {
   lat: number | undefined;
@@ -57,4 +57,10 @@ export interface InputFieldProps {
 export interface DisplayFieldProps {
   label: string;
   name: string;
+}
+
+export interface SelectorProps {
+  value: string;
+  setValue: Dispatch<SetStateAction<treeTypes>>;
+  label: string;
 }
